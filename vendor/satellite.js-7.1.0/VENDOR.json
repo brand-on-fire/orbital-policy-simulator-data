@@ -1,0 +1,30 @@
+{
+  "package": "satellite.js",
+  "version": "7.1.0",
+  "license": "MIT",
+  "tarball": "https://registry.npmjs.org/satellite.js/-/satellite.js-7.1.0.tgz",
+  "npmIntegrity": "sha512-U6nRml9Nb7dV9LJPiMNPyna7U7ry+1nXYkOeCEG7K/YbojQQLHHmcjPisp03VNY+HLcbQHqbt7t4t1vQMaKCLQ==",
+  "npmShasum": "aafa94d741f43cfb7f58f27360f1bb8dd53d5246",
+  "bundle": {
+    "file": "satellite.mjs",
+    "sha256": "481a62a9f4e0f8017dd39031ed159b1aea8e0704f8f7e6a74fe49780b4656c17",
+    "bytes": 96176,
+    "format": "esm",
+    "entry": "package/dist/index.js",
+    "stubbedImports": ["#wasm-single-thread", "#wasm-multi-thread"]
+  },
+  "licenseFile": { "file": "LICENSE.md", "sha256": "1432ff8b94b91db9f242d908e09f2ecb1a0804a03f76ba844cf052c7bb614d9e" },
+  "build": {
+    "tool": "esbuild 0.25.10 (JavaScript API, platform neutral, target es2022, not minified)",
+    "command": "node scripts/build-vendor.mjs --package <extracted satellite.js-7.1.0.tgz>/package --esbuild <esbuild 0.25.10>/lib/main.js",
+    "builtAt": "2026-10-15"
+  },
+  "golden": {
+    "description": "ISS (ZARYA) GP from https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=CSV (captured 2026-10-15), propagated to 2026-10-15T18:00:00Z. Reference values computed with the unbundled satellite.js 7.1.0 package dist/index.js.",
+    "omm": {"OBJECT_NAME":"ISS (ZARYA)","OBJECT_ID":"1998-067A","EPOCH":"2026-10-15T11:59:01.524480","MEAN_MOTION":15.48874993,"ECCENTRICITY":0.00066468,"INCLINATION":51.6327,"RA_OF_ASC_NODE":64.7113,"ARG_OF_PERICENTER":265.3101,"MEAN_ANOMALY":94.7128,"EPHEMERIS_TYPE":0,"CLASSIFICATION_TYPE":"U","NORAD_CAT_ID":25544,"ELEMENT_SET_NO":999,"REV_AT_EPOCH":59040,"BSTAR":0.0001033021,"MEAN_MOTION_DOT":0.00005222,"MEAN_MOTION_DDOT":0},
+    "at": "2026-10-15T18:00:00Z",
+    "positionKm": {"x": 4774.789423202475, "y": 3324.635615566285, "z": -3518.0217105249085},
+    "velocityKmS": {"x": -0.9341906494122467, "y": 6.116721283750945, "z": 4.510057076056722},
+    "toleranceKm": 0.000001
+  }
+}

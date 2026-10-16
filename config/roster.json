@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "description": "Objects the collector requests. CelesTrak names and the withheld facts below were read from CelesTrak GP and SATCAT responses captured 2026-10-15; the app keeps its own curated labels.",
+  "catnr": [
+    {
+      "noradCatId": 25544,
+      "celestrakName": "ISS (ZARYA)"
+    },
+    {
+      "noradCatId": 48274,
+      "celestrakName": "CSS (TIANHE)"
+    },
+    {
+      "noradCatId": 67335,
+      "celestrakName": "STARLINK-36486"
+    },
+    {
+      "noradCatId": 63724,
+      "celestrakName": "KUIPER-00008"
+    },
+    {
+      "noradCatId": 44057,
+      "celestrakName": "ONEWEB-0012"
+    },
+    {
+      "noradCatId": 60379,
+      "celestrakName": "QIANFAN-1"
+    },
+    {
+      "noradCatId": 62323,
+      "celestrakName": "HULIANWANG DIGUI-01"
+    },
+    {
+      "noradCatId": 54755,
+      "celestrakName": "O3B MPOWER F1"
+    },
+    {
+      "noradCatId": 62339,
+      "celestrakName": "GPS BIII-7  (PRN 01)"
+    },
+    {
+      "noradCatId": 57517,
+      "celestrakName": "COSMOS 2569 (703K)"
+    },
+    {
+      "noradCatId": 61182,
+      "celestrakName": "GSAT0232 (GALILEO 32)"
+    },
+    {
+      "noradCatId": 58654,
+      "celestrakName": "BEIDOU-3 M28 (C50)"
+    },
+    {
+      "noradCatId": 56759,
+      "celestrakName": "NVS-01 (IRNSS-1J)"
+    },
+    {
+      "noradCatId": 62876,
+      "celestrakName": "QZS-6 (QZSS/PRN 200)"
+    },
+    {
+      "noradCatId": 60133,
+      "celestrakName": "GOES 19"
+    },
+    {
+      "noradCatId": 41836,
+      "celestrakName": "HIMAWARI-9"
+    },
+    {
+      "noradCatId": 54743,
+      "celestrakName": "METEOSAT-12 (MTG-I1)"
+    },
+    {
+      "noradCatId": 48808,
+      "celestrakName": "FENGYUN 4B"
+    },
+    {
+      "noradCatId": 41105,
+      "celestrakName": "ELEKTRO-L 2"
+    },
+    {
+      "noradCatId": 49260,
+      "celestrakName": "LANDSAT 9"
+    },
+    {
+      "noradCatId": 60989,
+      "celestrakName": "SENTINEL-2C"
+    },
+    {
+      "noradCatId": 60182,
+      "celestrakName": "ALOS-4 (DAICHI-4)"
+    },
+    {
+      "noradCatId": 44804,
+      "celestrakName": "CARTOSAT-3"
+    },
+    {
+      "noradCatId": 48268,
+      "celestrakName": "PLEIADES NEO 3"
+    },
+    {
+      "noradCatId": 40699,
+      "celestrakName": "COSMOS 2506"
+    },
+    {
+      "noradCatId": 40420,
+      "celestrakName": "COSMOS 2503"
+    },
+    {
+      "noradCatId": 58582,
+      "celestrakName": "YAOGAN-41"
+    },
+    {
+      "noradCatId": 41038,
+      "celestrakName": "YAOGAN-29"
+    },
+    {
+      "noradCatId": 31797,
+      "celestrakName": "SAR-LUPE 2"
+    },
+    {
+      "noradCatId": 44071,
+      "celestrakName": "WGS 10 (USA 291)"
+    },
+    {
+      "noradCatId": 100983,
+      "celestrakName": "SDA-NG-T1TL-401"
+    },
+    {
+      "noradCatId": 66303,
+      "celestrakName": "STARCLOUD-1"
+    },
+    {
+      "noradCatId": 20580,
+      "celestrakName": "HST"
+    },
+    {
+      "noradCatId": 46114,
+      "celestrakName": "GALAXY 30 (WAAS/PRN 135)"
+    },
+    {
+      "noradCatId": 42709,
+      "celestrakName": "SES-15 (WAAS/PRN 133)"
+    },
+    {
+      "noradCatId": 41589,
+      "celestrakName": "EUTELSAT 117 WEST B (WAAS/PRN 131)"
+    },
+    {
+      "noradCatId": 28899,
+      "celestrakName": "INMARSAT 4-F2 (SOUTHPAN/PRN 122)"
+    },
+    {
+      "noradCatId": 65585,
+      "celestrakName": "PRAETORIAN SDA_601",
+      "note": "SDA Tranche 1 Transport Layer flagship: SATCAT 2025-203 (21 payloads, AFWTR, launched 2025-09-10) matches the T1TL-B launch of 21 York-built Transport Layer satellites reported by Spaceflight Now and Air & Space Forces Magazine. Catalogued for more than 30 days.",
+      "evidence": [
+        "https://spaceflightnow.com/2025/09/12/new-u-s-military-satellite-constellation-takes-shape-with-first-launch-from-vandenberg-sfb/",
+        "https://www.airandspaceforces.com/space-development-agency-launches-21-data-transport-satellites/"
+      ]
+    }
+  ],
+  "intdes": [
+    {
+      "intdes": "2025-100",
+      "label": "SCS-01 A to M (orbital computing, PRC)",
+      "namePattern": "^SCS-01 [A-Z]$",
+      "expectedCount": 12,
+      "payloadNoradRange": [
+        63982,
+        63993
+      ]
+    },
+    {
+      "intdes": "2026-004",
+      "label": "AETHER-3 to AETHER-12 (optical relay, CA)",
+      "namePattern": "^AETHER-(?:[3-9]|1[0-2])$",
+      "expectedCount": 10,
+      "payloadNoradRange": [
+        67374,
+        67383
+      ]
+    }
+  ],
+  "stations": [
+    {
+      "source": "ISS-E",
+      "noradCatId": 25544
+    },
+    {
+      "source": "CSS-E",
+      "noradCatId": 48274
+    }
+  ],
+  "withheld": [
+    {
+      "noradCatId": 37348,
+      "name": "USA 224",
+      "objectId": "2011-002A",
+      "owner": "US",
+      "launchDate": "2011-01-20",
+      "launchSite": "AFWTR",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 39232,
+      "name": "USA 245",
+      "objectId": "2013-043A",
+      "owner": "US",
+      "launchDate": "2013-08-28",
+      "launchSite": "AFWTR",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 43941,
+      "name": "USA 290",
+      "objectId": "2019-004A",
+      "owner": "US",
+      "launchDate": "2019-01-19",
+      "launchSite": "AFWTR",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 43866,
+      "name": "CSO-1",
+      "objectId": "2018-106A",
+      "owner": "FR",
+      "launchDate": "2018-12-19",
+      "launchSite": "FRGUI",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 63156,
+      "name": "CSO-3",
+      "objectId": "2025-044A",
+      "owner": "FR",
+      "launchDate": "2025-03-06",
+      "launchSite": "FRGUI",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 36608,
+      "name": "OFEQ 9",
+      "objectId": "2010-031A",
+      "owner": "ISRA",
+      "launchDate": "2010-06-22",
+      "launchSite": "YAVNE",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 45860,
+      "name": "OFEQ 16",
+      "objectId": "2020-044A",
+      "owner": "ISRA",
+      "launchDate": "2020-07-06",
+      "launchSite": "YAVNE",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 56083,
+      "name": "OFEQ 13",
+      "objectId": "2023-044A",
+      "owner": "ISRA",
+      "launchDate": "2023-03-28",
+      "launchSite": "YAVNE",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    },
+    {
+      "noradCatId": 65432,
+      "name": "OFEQ 19",
+      "objectId": "2025-193A",
+      "owner": "ISRA",
+      "launchDate": "2025-09-02",
+      "launchSite": "YAVNE",
+      "dataStatus": "NEA",
+      "note": "Catalogued, elements withheld; never requested.",
+      "source": "CelesTrak SATCAT, captured 2026-10-15"
+    }
+  ]
+}

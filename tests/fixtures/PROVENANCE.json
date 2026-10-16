@@ -1,0 +1,595 @@
+{
+  "description": "Provenance of every test fixture. 'raw' files are verbatim responses. 'converted-from-json' files were converted from JSON captures to CelesTrak CSV by tests/fixtures/convert-captures.mjs (the converted ISS row is byte-identical to the raw CSV capture). 'synthetic' files are clearly derived rows. Research captures: /private/tmp/.../scratchpad/sat/ of the 2026-10-15 research session.",
+  "schemaFieldOrderSources": {
+    "gp": "live CSV capture (raw-gp-catnr-25544.csv)",
+    "supgp": "live CSV capture (raw-supgp-iss-e.csv)",
+    "satcat": "https://celestrak.org/satcat/satcat-format.php field table (updated 2026 Sep 23) and the JSON key order of the captures; a live SATCAT CSV header was not captured"
+  },
+  "files": [
+    {
+      "file": "celestrak/gp-catnr-100983.csv",
+      "sha256": "5df95bd026414495e34634bee9e0334ce80d7f969e4f4b3ea93589c817327dac",
+      "bytes": 377,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=military&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/military.json (row NORAD_CAT_ID 100983)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-20580.csv",
+      "sha256": "d8ca8d1c6e9c51a4805464d747577322a963d407b4249fc75ccd50d0580c929d",
+      "bytes": 369,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=science&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/science.json (row NORAD_CAT_ID 20580)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-25544.csv",
+      "sha256": "5134967e810a0899cd106126f752ed829646f33760451c6db47fcf0923a7534d",
+      "bytes": 375,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/stations.json (row NORAD_CAT_ID 25544)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-28899.csv",
+      "sha256": "671d147a84100a61d8782b1a6f46363e88b21b5077bca6710de5b7d4bcf66a40",
+      "bytes": 382,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=sbas&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/sbas.json (row NORAD_CAT_ID 28899)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-31797.csv",
+      "sha256": "0c102954071dfb7a7d7d0a7cddb83167ca0eadc88996e2c923fa8344e2bdeb21",
+      "bytes": 372,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=military&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/military.json (row NORAD_CAT_ID 31797)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-40420.csv",
+      "sha256": "a34e27562ef7391ad08b8ef163e10fb7c1c12ae4b47bec4fd5a7837cd580901f",
+      "bytes": 377,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=40420&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/40420.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-40699.csv",
+      "sha256": "5ddf5fe181d7063796b5020486ba23a0991acd971de95263508e9ccff46bbcda",
+      "bytes": 376,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=40699&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/40699.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-41038.csv",
+      "sha256": "1783889bc277c42cb80817c546286763efafb1420766cb829e8309c1e885bdf3",
+      "bytes": 372,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 41038)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-41105.csv",
+      "sha256": "73fb3ab927d6c27bcfc54598b4f18e16bb34c4d8941e9c827d98a3663565e223",
+      "bytes": 363,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 41105)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-41589.csv",
+      "sha256": "cbeffff77a93502b807b1bc5c28a24283e61bc476fae388fc51c9ea4ee0701a9",
+      "bytes": 384,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=sbas&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/sbas.json (row NORAD_CAT_ID 41589)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-41836.csv",
+      "sha256": "57edd36a41ae76758a50106d34bdc80f559ee894f8a571de2e731b4f601a39a6",
+      "bytes": 361,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 41836)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-42709.csv",
+      "sha256": "f8ff2e49e064b46c3d45a9da78df33a4e60221f7659edec38e08fb4fcb3b0fe0",
+      "bytes": 370,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=sbas&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/sbas.json (row NORAD_CAT_ID 42709)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-44057.csv",
+      "sha256": "97e4c4e64e2a5c9eb21ce6ae71305b05f5e53f419a918616eb2f50ef8d2a8a3e",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=44057&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/44057.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-44071.csv",
+      "sha256": "57f39342202cc4683a8257455418be0c5e92ac28bd9007e01428cd9ed9e1fd9a",
+      "bytes": 366,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=44071&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/44071.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-44804.csv",
+      "sha256": "f4a99dc47307ca3e5a92fe873ee637de637689a66427c2e5b5a27b5045e6739b",
+      "bytes": 376,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 44804)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-46114.csv",
+      "sha256": "7a6ea2f7cfc4c37e1b22ca35f2d060f8d37f78cb72d9acbdc8c6066a1f8544c8",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=sbas&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/sbas.json (row NORAD_CAT_ID 46114)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-48268.csv",
+      "sha256": "c07290469c4b3de480bbfd7e3cdb4504d22d7e5bec0a3c10cad6cc817f9d3066",
+      "bytes": 374,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 48268)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-48274.csv",
+      "sha256": "76ebf2231a382c30f7197215361e8f47b8a0a8485148ade5f8f92cab0b8b659a",
+      "bytes": 379,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=stations&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/stations.json (row NORAD_CAT_ID 48274)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-48808.csv",
+      "sha256": "2c68dd846692ef9760b139aec684c527295a9baeb715f9cc1fbef34a28515caf",
+      "bytes": 361,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=48808&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/48808.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-49260.csv",
+      "sha256": "e3ee0a07d8322de3bca6a97ef2f866310fef37bb67c7ef1318064dad6ed85949",
+      "bytes": 374,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 49260)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-54743.csv",
+      "sha256": "3c6c1822b72d1ca04866458048bffd41dcb1960a0ffafef13f6a8ae91dba5d7e",
+      "bytes": 367,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 54743)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-54755.csv",
+      "sha256": "78dc27e1fc4cf91904d79193f12e4e92d7bc7a02e18201b0c45d1ca9600a8208",
+      "bytes": 364,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=54755&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/54755.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-56759.csv",
+      "sha256": "3276e84a6b615e0bf6650f3e4905d1f7d7d07c42d768ba0572f0dabec026bb08",
+      "bytes": 368,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=56759&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/56759.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-57517.csv",
+      "sha256": "4e7c2df671b051853e6ce1da33819ae5e3b831505dcd53034746fe1db9af14f2",
+      "bytes": 367,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=glo-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/glo-ops.json (row NORAD_CAT_ID 57517)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-58582.csv",
+      "sha256": "e5c391ccd9f964071f1147abce70df766fd573d000512145dba36721ab68d5de",
+      "bytes": 362,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=58582&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/58582.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-58654.csv",
+      "sha256": "799656e6605a62ff8899a23a23b35ddbed7f09069ca7a0ca26f371ed1e9c7a78",
+      "bytes": 369,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=beidou&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/beidou.json (row NORAD_CAT_ID 58654)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-60133.csv",
+      "sha256": "2e7ee18c7954c7482d60b4541f4a3ceb3a2c9d40f6e776ca67c1aa06c65217fb",
+      "bytes": 357,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 60133)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-60182.csv",
+      "sha256": "8b44f9b5ef269c0f5df81dceeb23369eec557b357c5056d6b8f1e901c694fe73",
+      "bytes": 382,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 60182)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-60379.csv",
+      "sha256": "1ff420718bf75295525ae250394803862f849c4a62d9123bcbba3a44a2e356ee",
+      "bytes": 372,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=qianfan&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/qianfan.json (row NORAD_CAT_ID 60379)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-60989.csv",
+      "sha256": "dad0616758d219f0c1fd84bbdd59018bbdde70ceb513fdf19e0c3996ec056878",
+      "bytes": 370,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 60989)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-61182.csv",
+      "sha256": "bd105e6456b60cbf6d314ff0644f2ffacaf58149ed668d07dac8ebc1d88b7fa2",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=galileo&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/galileo.json (row NORAD_CAT_ID 61182)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-62323.csv",
+      "sha256": "a1da607ac6cd227ca1caaaf4707f670f38300dd29ebe4808351d67e877949c72",
+      "bytes": 382,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=hulianwang&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/hulianwang.json (row NORAD_CAT_ID 62323)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-62339.csv",
+      "sha256": "f1a83e2e7d49af632076bc34f550f428753d43db32bfa83b29d019544418ed01",
+      "bytes": 367,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=gps-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/gps-ops.json (row NORAD_CAT_ID 62339)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-62876.csv",
+      "sha256": "e6f7edbccd1700f5749506b84a6330ffe133a4bb773b7ae6cd4ec977bbf0267b",
+      "bytes": 370,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=sbas&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/sbas.json (row NORAD_CAT_ID 62876)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-63724.csv",
+      "sha256": "f937e257a089047a40bae0baac02a4a6a6b59738d97433af76f4b3aa7e780d29",
+      "bytes": 376,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=kuiper&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/kuiper.json (row NORAD_CAT_ID 63724)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-63982.csv",
+      "sha256": "f023d5476cc7deba333ba2023e9bb0372029020c7e2416084adad410067db562",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=63982&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/63982.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-65585.csv",
+      "sha256": "40e4a9e665d9d110245e1c6df478783f39f301fb162da407633cfe09f74a9456",
+      "bytes": 383,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=military&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/military.json (row NORAD_CAT_ID 65585)",
+      "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-66303.csv",
+      "sha256": "698313ea08b658a3a8a3339ef1ce9c3853e35d8ef39ed7b5bcfbeceb11a1116b",
+      "bytes": 374,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=66303&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/66303.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-67335.csv",
+      "sha256": "75fea82389cdce2c76e6ab22f8d0dd5d84326dcd8f8318a57a3bad93d28603bf",
+      "bytes": 374,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=67335&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/67335.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-67374.csv",
+      "sha256": "84422624a20d6b09af1640cdfe58084c974b9c5e0fc0d99ddf23239afd82f21b",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=67374&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gpc/67374.json"
+    },
+    {
+      "file": "celestrak/gp-group-beidou.csv",
+      "sha256": "8abd5a95da86f536be0156fc2765b0fdc3f27dc264d1f21cb45fa47d7795ed3d",
+      "bytes": 7775,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=beidou&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/beidou.json"
+    },
+    {
+      "file": "celestrak/gp-group-galileo.csv",
+      "sha256": "8ee3b689033c73f64d94f25315e15accbc7abedd0b057710d12626ad5252796c",
+      "bytes": 4555,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=galileo&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/galileo.json"
+    },
+    {
+      "file": "celestrak/gp-group-glo-ops.csv",
+      "sha256": "57bfa0eeac26d97325e3ff12eb3ced9cd849f92d2521e72e5678432432dd7eff",
+      "bytes": 4310,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=glo-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/glo-ops.json"
+    },
+    {
+      "file": "celestrak/gp-group-gps-ops.csv",
+      "sha256": "b98dfa5c6a933691042bccc8ba2ba854660e1ab4f3a74930448d4145761440e3",
+      "bytes": 4819,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=gps-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/gps-ops.json"
+    },
+    {
+      "file": "celestrak/gp-group-kuiper.csv",
+      "sha256": "a7183b72abe2a8d75ccaa27c67ffa99d697138c2f2e94c99815be8f407f6a643",
+      "bytes": 58616,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=kuiper&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/kuiper.json"
+    },
+    {
+      "file": "celestrak/gp-intdes-2025-100.csv",
+      "sha256": "9e2189358eb4f83c2584514e92b2701db9c823395e863bfa8975576e59368a5b",
+      "bytes": 1988,
+      "method": "synthetic",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?INTDES=2025-100&FORMAT=CSV",
+      "capturedAt": "2026-10-15",
+      "capture": "derived from research capture sat/gpc/63982.json",
+      "note": "SYNTHETIC: SCS-01 A elements cloned for SCS-01 B to M (NORAD 63983 to 63993, names and designators from SATCAT sat/intdes_100.json); only identity fields and mean anomaly changed."
+    },
+    {
+      "file": "celestrak/gp-intdes-2026-004.csv",
+      "sha256": "e750d37a31ddf8de051852f389c958fb2193d26edd19fc582a784179c019c1c1",
+      "bytes": 2442,
+      "method": "synthetic",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?INTDES=2026-004&FORMAT=CSV",
+      "capturedAt": "2026-10-15",
+      "capture": "derived from research capture sat/gpc/67374.json",
+      "note": "SYNTHETIC: AETHER-3 elements cloned for NORAD 67371 to 67385 (names from SATCAT sat/q/i26_004.json, including non-AETHER payloads to exercise the payload filter); only identity fields and mean anomaly changed."
+    },
+    {
+      "file": "celestrak/raw-gp-catnr-25544.csv",
+      "sha256": "5134967e810a0899cd106126f752ed829646f33760451c6db47fcf0923a7534d",
+      "bytes": 375,
+      "method": "raw",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=CSV",
+      "capturedAt": "2026-10-15",
+      "capture": "live CSV response, this build session",
+      "note": "Verbatim bytes (CRLF line endings)."
+    },
+    {
+      "file": "celestrak/raw-supgp-iss-e.csv",
+      "sha256": "fc48b7874dac7b53dc2c1e8a487afa879e46920ee8b3c4a90599fbe64291a79d",
+      "bytes": 9781,
+      "method": "raw",
+      "source": "https://celestrak.org/NORAD/elements/supplemental/sup-gp.php?SOURCE=ISS-E&FORMAT=CSV",
+      "capturedAt": "2026-10-15",
+      "capture": "live CSV response, this build session",
+      "note": "Verbatim bytes; 60 six-hour segments with RMS and DATA_SOURCE columns."
+    },
+    {
+      "file": "celestrak/satcat-catnr-25544.csv",
+      "sha256": "6d105dc1fb5b6eb28741d8b0b32ec30401496bb77ba87224e9212d1c64bb1b96",
+      "bytes": 278,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?CATNR=25544&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/satcat/stations.json"
+    },
+    {
+      "file": "celestrak/satcat-catnr-37348.csv",
+      "sha256": "c4fdddbc9eaf156f9544c88889bac8014a41d28f2c091f2b0a644837477e3028",
+      "bytes": 267,
+      "method": "converted-from-json",
+      "source": "research-era SATCAT query (before the NEA guard existed)",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/q/5.json",
+      "note": "Withheld (NEA) record, used only to prove such rows are dropped from any response."
+    },
+    {
+      "file": "celestrak/satcat-catnr-63724.csv",
+      "sha256": "a23741165dcfb7d4aadefb160eb0fadd863635734d509b5c00bf81b299d790e9",
+      "bytes": 268,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?CATNR=63724&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/satcat/kuiper.json"
+    },
+    {
+      "file": "celestrak/satcat-catnr-65585.csv",
+      "sha256": "e6022d08cca14b5bacd8b7370af0f703b1850335b22a23e45adf6d4553402608",
+      "bytes": 276,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?CATNR=65585&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/satcat/military.json"
+    },
+    {
+      "file": "celestrak/satcat-catnr-66303.csv",
+      "sha256": "8ee5d78f40a60572f1e8f251886df60c3ea06c220213bfefe3ec782b0bb316cf",
+      "bytes": 268,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?CATNR=66303&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/q/1.json"
+    },
+    {
+      "file": "celestrak/satcat-group-gps-ops.csv",
+      "sha256": "8107d9671e7590a19e445c262080f4eb289865b353b121c59d3f3c8af58e46e8",
+      "bytes": 3461,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?GROUP=gps-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/satcat/gps-ops.json"
+    },
+    {
+      "file": "celestrak/satcat-group-kuiper.csv",
+      "sha256": "697543018fa5c780f78f24e14662d02a5819d9522f141faef8c26d387f5a6f67",
+      "bytes": 33134,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?GROUP=kuiper&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/satcat/kuiper.json"
+    },
+    {
+      "file": "celestrak/satcat-intdes-2025-100.csv",
+      "sha256": "ad44dcfddbe0a83fcdd7a387aa33519f69a9a0ded772dd4fb221747520b718c8",
+      "bytes": 1155,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?INTDES=2025-100&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/intdes_100.json"
+    },
+    {
+      "file": "celestrak/satcat-intdes-2026-004.csv",
+      "sha256": "e07bd8c6c4251192f91fcd33bb63f1d252dd43d87980c06fb061b466fc2ccc1f",
+      "bytes": 3664,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/satcat/records.php?INTDES=2026-004&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/q/i26_004.json"
+    },
+    {
+      "file": "swpc/f107_cm_flux.json",
+      "sha256": "26b7ac5543f62893fb4e1dad43097a749afeb55eee86a183e940bb66386fffbd",
+      "bytes": 22838,
+      "method": "raw",
+      "source": "https://services.swpc.noaa.gov/json/f107_cm_flux.json",
+      "capturedAt": "2026-10-15",
+      "capture": "live JSON response, this build session",
+      "note": "Verbatim bytes."
+    },
+    {
+      "file": "swpc/noaa-planetary-k-index.json",
+      "sha256": "8150a0dc3727bbc3278bb60bfe4c7867cc23ef35b5a5e79587aa2c03d873455e",
+      "bytes": 4340,
+      "method": "raw",
+      "source": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json",
+      "capturedAt": "2026-10-15",
+      "capture": "live JSON response, this build session",
+      "note": "Verbatim bytes."
+    },
+    {
+      "file": "swpc/predicted-solar-cycle.json",
+      "sha256": "a2bbb69d58e2b6530b9f2b7cabf3a3b5cd6c3ce8dad8e704efb2874590430ece",
+      "bytes": 17838,
+      "method": "raw",
+      "source": "https://services.swpc.noaa.gov/json/solar-cycle/predicted-solar-cycle.json",
+      "capturedAt": "2026-10-15",
+      "capture": "live JSON response, this build session",
+      "note": "Verbatim bytes."
+    }
+  ]
+}

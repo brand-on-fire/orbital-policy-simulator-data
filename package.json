@@ -1,0 +1,11 @@
+{
+  "name": "orbital-policy-simulator-data",
+  "private": true,
+  "type": "module",
+  "description": "Public data collector for the Orbital Policy Simulator. No dependencies; nothing is installed in CI.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "verify-vendor": "node scripts/verify-vendor.mjs"
+  }
+}

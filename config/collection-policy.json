@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "enabled": true,
+  "haltResetAt": null,
+  "haltResetHelp": "To clear a CelesTrak halt, a source schema halt or a quarantine: review the cause in status.json, then commit an ISO UTC time (not in the future) here, later than the event being cleared.",
+  "userAgent": "OrbitalPolicySimulatorPublicCollector/1 (+https://github.com/brand-on-fire/orbital-policy-simulator-data)",
+  "celestrak": {
+    "timeoutSeconds": 30,
+    "requestSpacingMs": 2000,
+    "maxRequestsPerRun": 45,
+    "maxBytesPerDay": 20971520,
+    "errorCooldownMinutes": 120,
+    "haltAfterCountedErrors": 3,
+    "haltAfterConsecutive403": 2
+  },
+  "swpc": {
+    "timeoutSeconds": 30,
+    "requestSpacingMs": 500
+  },
+  "publication": {
+    "maxPayloadBytes": 10485760,
+    "maxRepositoryBytes": 209715200,
+    "layersHaltRepositoryBytes": 157286400,
+    "keepaliveDays": 30
+  },
+  "admission": {
+    "celestrak": {
+      "accessEvidenceUrl": "https://celestrak.org/usage-policy.php",
+      "formatEvidenceUrl": "https://celestrak.org/NORAD/documentation/gp-data-formats.php",
+      "rightsEvidenceUrl": "https://www.space-track.org/documentation#/user_agree",
+      "rightsNote": "USSPACECOM blanket approval to redistribute basic SSA data (TLE/OMM, SATCAT, decay data) conditioned on citation.",
+      "verifiedAt": "2026-10-15"
+    },
+    "swpc": {
+      "accessEvidenceUrl": "https://services.swpc.noaa.gov/",
+      "rightsNote": "NOAA SWPC public data products; credited in NOTICE.md.",
+      "verifiedAt": "2026-10-15"
+    }
+  },
+  "sources": [
+    {
+      "id": "roster-gp",
+      "provider": "celestrak",
+      "kind": "roster-gp",
+      "pollMinutes": 360,
+      "maxResponseBytes": 262144,
+      "enabled": true
+    },
+    {
+      "id": "stations-supgp",
+      "provider": "celestrak",
+      "kind": "stations-supgp",
+      "pollMinutes": 360,
+      "maxResponseBytes": 524288,
+      "enabled": true
+    },
+    {
+      "id": "layer-starlink",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 8388608,
+      "enabled": true,
+      "group": "starlink"
+    },
+    {
+      "id": "layer-oneweb",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "oneweb"
+    },
+    {
+      "id": "layer-kuiper",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "kuiper"
+    },
+    {
+      "id": "layer-qianfan",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "qianfan"
+    },
+    {
+      "id": "layer-hulianwang",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "hulianwang"
+    },
+    {
+      "id": "layer-gps-ops",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "gps-ops"
+    },
+    {
+      "id": "layer-glo-ops",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "glo-ops"
+    },
+    {
+      "id": "layer-galileo",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "galileo"
+    },
+    {
+      "id": "layer-beidou",
+      "provider": "celestrak",
+      "kind": "layer",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 2097152,
+      "enabled": true,
+      "group": "beidou"
+    },
+    {
+      "id": "satcat-roster",
+      "provider": "celestrak",
+      "kind": "satcat-roster",
+      "pollMinutes": 10080,
+      "maxResponseBytes": 262144,
+      "enabled": true
+    },
+    {
+      "id": "satcat-layers",
+      "provider": "celestrak",
+      "kind": "satcat-layers",
+      "pollMinutes": 10080,
+      "maxResponseBytes": 8388608,
+      "enabled": true
+    },
+    {
+      "id": "swpc-kp",
+      "provider": "swpc",
+      "kind": "swpc",
+      "pollMinutes": 180,
+      "maxResponseBytes": 262144,
+      "enabled": true,
+      "product": "kp"
+    },
+    {
+      "id": "swpc-f107",
+      "provider": "swpc",
+      "kind": "swpc",
+      "pollMinutes": 1440,
+      "maxResponseBytes": 1048576,
+      "enabled": true,
+      "product": "f107"
+    },
+    {
+      "id": "swpc-cycle",
+      "provider": "swpc",
+      "kind": "swpc",
+      "pollMinutes": 10080,
+      "maxResponseBytes": 1048576,
+      "enabled": true,
+      "product": "cycle"
+    }
+  ]
+}

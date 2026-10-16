@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "description": "Daily constellation groups. Published only as shell summaries of every object plus a deterministic sampled layer (catalog numbers divisible by sampleEvery).",
+  "maxInvalidFraction": 0.02,
+  "shellBins": {
+    "leoCeilingKm": 2000,
+    "leoAltitudeKm": 20,
+    "highAltitudeKm": 250,
+    "inclinationDeg": 1,
+    "raanDeg": 5
+  },
+  "groups": [
+    {
+      "group": "starlink",
+      "sampleEvery": 10
+    },
+    {
+      "group": "oneweb",
+      "sampleEvery": 1
+    },
+    {
+      "group": "kuiper",
+      "sampleEvery": 1
+    },
+    {
+      "group": "qianfan",
+      "sampleEvery": 1
+    },
+    {
+      "group": "hulianwang",
+      "sampleEvery": 1
+    },
+    {
+      "group": "gps-ops",
+      "sampleEvery": 1
+    },
+    {
+      "group": "glo-ops",
+      "sampleEvery": 1
+    },
+    {
+      "group": "galileo",
+      "sampleEvery": 1
+    },
+    {
+      "group": "beidou",
+      "sampleEvery": 1
+    }
+  ]
+}
