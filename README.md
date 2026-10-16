@@ -46,7 +46,7 @@ Groups: starlink, oneweb, kuiper, qianfan, hulianwang (Guowang), gps-ops, glo-op
 
 ## Validation (fail closed, keep last good)
 
-Exact CSV header lock per format, strict RFC 4180 parsing, range checks on every field, epoch sanity (GP no more than 5 minutes ahead, SupGP no more than 15 days), per-object epoch monotonicity, count-drop rejection (more than 10 percent, or 5 objects for 50 or fewer), and SGP4 smoke propagation of every record at retrieval time and +90 minutes (roster objects also at +72 hours to flag decay). Anything that fails keeps the last good data; `status.json` is still published.
+Exact CSV header lock per format, strict RFC 4180 parsing, range checks on every field (|BSTAR| < 10: orbit-raising Qianfan and Guowang satellites carry fitted BSTAR near -3), epoch sanity (GP no more than 5 minutes ahead, SupGP no more than 15 days), per-object epoch monotonicity, count-drop rejection (more than 10 percent, or 5 objects for 50 or fewer), and SGP4 smoke propagation of every record at retrieval time and +90 minutes (roster objects also at +72 hours to flag decay). Anything that fails keeps the last good data; `status.json` is still published.
 
 ## Storage and keepalive
 

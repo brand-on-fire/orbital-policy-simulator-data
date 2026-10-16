@@ -19,6 +19,11 @@ test('SGP4 smoke passes for every captured roster and group object at now and +9
   }
 });
 
+test('an orbit-raising satellite with BSTAR -3.2 passes SGP4 smoke', () => {
+  const [record] = records('celestrak/gp-catnr-69861.csv');
+  assert.deepEqual(smokeTest(record, NOW, [0, 90, 4320]), { ok: true });
+});
+
 test('SupGP segments smoke-propagate from their own epochs', () => {
   for (const segment of records('celestrak/raw-supgp-iss-e.csv', 'supgp')) {
     assert.ok(smokeTest(segment, Math.max(NOW, Date.parse(`${segment.EPOCH}Z`)), [0, 90]).ok, segment.OBJECT_NAME);

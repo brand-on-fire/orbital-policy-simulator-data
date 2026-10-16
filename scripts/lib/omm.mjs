@@ -69,7 +69,9 @@ export function gpRangeProblems(record, { retrievedAtMs, kind = 'gp' }) {
     if (!(record[angle] >= 0 && record[angle] < 360)) reasons.push(`${angle} out of range`);
   }
   if (!(record.MEAN_MOTION > 0.9 && record.MEAN_MOTION < 17.5)) reasons.push('MEAN_MOTION out of range');
-  if (!(Math.abs(record.BSTAR) < 1)) reasons.push('BSTAR out of range');
+  // Orbit-raising satellites carry large negative fitted BSTAR (Qianfan and Guowang
+  // reached -3.2 on 2026-10-15; they propagate cleanly), so the bound only rejects garbage.
+  if (!(Math.abs(record.BSTAR) < 10)) reasons.push('BSTAR out of range');
   for (const drag of ['MEAN_MOTION_DOT', 'MEAN_MOTION_DDOT']) {
     if (!Number.isFinite(record[drag])) reasons.push(`${drag} not finite`);
   }

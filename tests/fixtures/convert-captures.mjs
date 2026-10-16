@@ -65,7 +65,7 @@ const groups = {};
 for (const group of ['stations', 'kuiper', 'qianfan', 'hulianwang', 'gps-ops', 'glo-ops', 'galileo', 'beidou', 'sbas', 'weather', 'resource', 'military', 'science']) {
   for (const record of await load(`gp/${group}.json`)) groups[record.NORAD_CAT_ID] = record;
 }
-for (const id of [25544, 48274, 63724, 60379, 62323, 62339, 57517, 61182, 58654, 62876, 60133, 41836, 54743, 41105, 49260, 60989, 60182, 44804, 48268, 41038, 31797, 100983, 20580, 46114, 42709, 41589, 28899, 65585]) {
+for (const id of [25544, 48274, 63724, 60379, 62323, 62339, 57517, 61182, 58654, 62876, 60133, 41836, 54743, 41105, 49260, 60989, 60182, 44804, 48268, 41038, 31797, 100983, 20580, 46114, 42709, 41589, 28899, 65585, 69861]) {
   await write(`gp-catnr-${id}.csv`, gpCsv([groups[id]]));
 }
 

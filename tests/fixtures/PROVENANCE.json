@@ -395,6 +395,16 @@
       "capture": "research capture sat/gpc/67374.json"
     },
     {
+      "file": "celestrak/gp-catnr-69861.csv",
+      "sha256": "4aa853a3d32d48b26153ee768142bc7982000017347d6c9816c43c19e897c6e0",
+      "bytes": 380,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=qianfan&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/qianfan.json (row NORAD_CAT_ID 69861)",
+      "note": "Orbit-raising QIANFAN-232 with fitted BSTAR -3.23; regression fixture for the BSTAR bound (the first hosted run rejected 14 such Qianfan rows under the original |BSTAR| < 1 rule)."
+    },
+    {
       "file": "celestrak/gp-group-beidou.csv",
       "sha256": "8abd5a95da86f536be0156fc2765b0fdc3f27dc264d1f21cb45fa47d7795ed3d",
       "bytes": 7775,

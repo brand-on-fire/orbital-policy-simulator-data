@@ -40,6 +40,12 @@ test('converts CelesTrak number style to numbers', () => {
   assert.deepEqual(gpRangeProblems(iss, { retrievedAtMs: NOW }), []);
 });
 
+test('accepts the large negative BSTAR of an orbit-raising satellite (QIANFAN-232)', () => {
+  const [row] = parseGpCsv(fixture('celestrak/gp-catnr-69861.csv'), { retrievedAtMs: NOW });
+  assert.ok(row.record.BSTAR < -3);
+  assert.deepEqual(row.reasons, []);
+});
+
 test('accepts 6-digit catalog numbers', () => {
   const [row] = parseGpCsv(fixture('celestrak/gp-catnr-100983.csv'), { retrievedAtMs: NOW });
   assert.equal(row.record.NORAD_CAT_ID, 100983);
@@ -55,7 +61,7 @@ test('range checks reject every out-of-range field', () => {
     ARG_OF_PERICENTER: [360.5],
     MEAN_ANOMALY: [-5],
     MEAN_MOTION: [0.9, 17.5, 20],
-    BSTAR: [1, -1.5],
+    BSTAR: [10, -12.5, 1e6],
     OBJECT_ID: ['1998-67A', '1998-067', '1998-067I', '1998-067O', 'XXXX-067A'],
     EPOCH: ['2026-10-15 11:59:01', '2026-10-15T11:59:01Z', 'not a date'],
     CLASSIFICATION_TYPE: ['', 'UU'],
