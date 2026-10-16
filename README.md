@@ -31,6 +31,7 @@ Groups: starlink, oneweb, kuiper, qianfan, hulianwang (Guowang), gps-ops, glo-op
 - Node 22 on the runner, no install step. SGP4 is the vendored satellite.js 7.1.0 bundle in `vendor/` (WASM runtimes stubbed), checked against `VENDOR.json` by `scripts/verify-vendor.mjs` before every run.
 - `scripts/publish.mjs restore` fetches the last publication and the committed collector state (`state/collector-state.json`) from `public-data`.
 - `scripts/collect.mjs` requests only the sources that are due: `now >= lastAttemptAt + max(pollMinutes, backoff)`. CelesTrak sources run in policy order inside a per-run cap of 60 requests (the validator's maximum; the roster uses 55, so a larger roster needs a split across runs); anything that does not fit waits for a later tick. The very first run requests only the roster.
+- New roster entries do not wait for the next full poll: when a catalog number in `config/roster.json` is missing from the last roster or SATCAT publication, the next tick requests just that number, once (per-key attempts are committed in state, and a key is never requested again within its source's poll interval). This backfill never runs inside an error backoff or cooldown and leaves each source's regular cadence unchanged.
 - `scripts/publish.mjs publish` runs the storage guard and pushes an ordinary commit whose parent is the restored head. Nothing is ever force-pushed.
 
 ## CelesTrak safety

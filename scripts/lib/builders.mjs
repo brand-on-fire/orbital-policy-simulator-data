@@ -100,11 +100,17 @@ export async function buildRoster(source, results, ctx) {
       for (const object of prevMembers) if (!objects.has(object.noradCatId)) retain(object.noradCatId, `missing from ${group} response`, { group });
     }
   }
+  // A backfill requests only new catalog numbers; everything else stays as published.
+  const backfill = ctx.mode === 'backfill';
   for (const entry of ctx.configs.roster.catnr) {
-    if (!objects.has(entry.noradCatId)) retain(entry.noradCatId, 'quarantined: not requested until a human resets it', { status: 'quarantined' });
+    if (objects.has(entry.noradCatId)) continue;
+    if (backfill && prevById.has(entry.noradCatId)) objects.set(entry.noradCatId, prevById.get(entry.noradCatId));
+    else retain(entry.noradCatId, 'quarantined: not requested until a human resets it', { status: 'quarantined' });
   }
   for (const object of prevById.values()) {
-    if (object.group && !objects.has(object.noradCatId)) retain(object.noradCatId, 'INTDES query not requested this run', { group: object.group });
+    if (!object.group || objects.has(object.noradCatId)) continue;
+    if (backfill) objects.set(object.noradCatId, object);
+    else retain(object.noradCatId, 'INTDES query not requested this run', { group: object.group });
   }
 
   const report = summarizeReport(updated, retained, schemaChanged, { detail: notes.join('; ') || undefined });

@@ -111,3 +111,39 @@ test('halts, cooldowns, byte budget and the storage threshold block CelesTrak bu
   assert.ok(plan.blocked.filter((item) => /MAINTENANCE REQUIRED/.test(item.reason)).length === 10);
   assert.ok(plan.run.some((item) => item.id === 'stations-supgp'));
 });
+
+test('new-id backfill: requests only missing catalog numbers once, without moving the cadence', async () => {
+  const configs = await loadRealConfigs();
+  const at = new Date(NOW).toISOString();
+  const state = defaultState();
+  for (const source of configs.policy.sources) state.sources[source.id] = { lastAttemptAt: at, lastStatus: 'ok', lastSuccessAt: at };
+  const missingIds = { 'satcat-roster': [67232, 45465], 'roster-gp': [], 'layer-starlink': [67232] };
+  let plan = planRun(configs, state, NOW + 30 * MINUTE, { missingIds });
+  assert.deepEqual(plan.run, [{ id: 'satcat-roster', requestCount: 2, mode: 'backfill', queryKeys: ['CATNR=67232', 'CATNR=45465'] }]);
+
+  // Once a key has been requested, it waits for the source's own pollMinutes.
+  state.keyAttempts['satcat:CATNR=67232'] = new Date(NOW + 31 * MINUTE).toISOString();
+  plan = planRun(configs, state, NOW + 60 * MINUTE, { missingIds });
+  assert.deepEqual(plan.run.map((item) => item.queryKeys), [['CATNR=45465']]);
+  state.keyAttempts['satcat:CATNR=45465'] = new Date(NOW + 61 * MINUTE).toISOString();
+  assert.deepEqual(planRun(configs, state, NOW + 90 * MINUTE, { missingIds }).run, []);
+
+  // Quarantined keys are never backfilled; nothing runs inside an error backoff or a cooldown.
+  const fresh = structuredClone(state);
+  fresh.keyAttempts = {};
+  fresh.quarantine.push({ key: 'satcat:CATNR=45465', at });
+  assert.deepEqual(planRun(configs, fresh, NOW + 30 * MINUTE, { missingIds }).run[0].queryKeys, ['CATNR=67232']);
+  const failed = structuredClone(fresh);
+  failed.sources['satcat-roster'].lastStatus = 'counted-error';
+  assert.deepEqual(planRun(configs, failed, NOW + 30 * MINUTE, { missingIds }).run, []);
+  const backfillFailed = structuredClone(fresh);
+  Object.assign(backfillFailed.sources['satcat-roster'], { lastBackfillAt: at, lastBackfillStatus: 'counted-error' });
+  const satcatRuns = (plan) => plan.run.filter((item) => item.id === 'satcat-roster');
+  assert.deepEqual(satcatRuns(planRun(configs, backfillFailed, NOW + 300 * MINUTE, { missingIds })), []);
+  assert.equal(satcatRuns(planRun(configs, backfillFailed, NOW + 361 * MINUTE, { missingIds })).length, 1);
+  const cooling = structuredClone(fresh);
+  cooling.celestrak.cooldownUntil = new Date(NOW + 60 * MINUTE).toISOString();
+  plan = planRun(configs, cooling, NOW + 30 * MINUTE, { missingIds });
+  assert.deepEqual(plan.run, []);
+  assert.match(plan.blocked.find((item) => item.id === 'satcat-roster').reason, /^backfill: cooling down/);
+});

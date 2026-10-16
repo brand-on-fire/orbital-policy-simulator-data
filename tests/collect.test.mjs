@@ -101,6 +101,44 @@ test('three staggered runs publish roster, stations, layers, shells and SATCAT; 
   assert.deepEqual(await readdir(h.generatedDir, { recursive: true }), before);
 });
 
+test('a catalog number added to the roster is backfilled once into roster and SATCAT', async () => {
+  const h = await setup();
+  await collect(h, NOW);
+  await collect(h, NOW + 30 * MINUTE);
+  await collect(h, NOW + 60 * MINUTE);
+  const before = await read(h, 'manifest.json');
+  const rosterBefore = await read(h, entry(before, 'roster').path);
+  const stateBefore = await read(h, 'state/collector-state.json');
+
+  h.configs.roster.catnr.push({ noradCatId: 69861, celestrakName: 'QIANFAN-232' });
+  const added = await collect(h, NOW + 2 * HOUR);
+  assert.deepEqual(added.log, [
+    'https://celestrak.org/NORAD/elements/gp.php?CATNR=69861&FORMAT=CSV',
+    'https://celestrak.org/satcat/records.php?CATNR=69861&FORMAT=CSV',
+  ]);
+  assert.equal(added.exitCode, 0);
+  assert.equal(added.status.celestrak.countedErrorsThisRun, 0);
+  const after = await read(h, 'manifest.json');
+  const roster = await read(h, entry(after, 'roster').path);
+  assert.equal(roster.objects.length, rosterBefore.objects.length + 1);
+  assert.equal(roster.objects.find((object) => object.noradCatId === 69861).status, 'current');
+  for (const object of rosterBefore.objects) {
+    assert.deepEqual(roster.objects.find((item) => item.noradCatId === object.noradCatId), object, `${object.noradCatId} unchanged`);
+  }
+  const satcat = await read(h, entry(after, 'satcat:roster').path);
+  assert.ok(satcat.records.some((record) => record.NORAD_CAT_ID === 69861));
+  const state = await read(h, 'state/collector-state.json');
+  assert.equal(state.sources['roster-gp'].lastAttemptAt, stateBefore.sources['roster-gp'].lastAttemptAt, 'cadence unchanged');
+  assert.equal(state.sources['satcat-roster'].lastAttemptAt, stateBefore.sources['satcat-roster'].lastAttemptAt, 'cadence unchanged');
+  assert.ok(state.sources['satcat-roster'].lastBackfillAt);
+  assert.match(added.status.sources.find((source) => source.id === 'satcat-roster').detail, /backfill of 1 new catalog numbers/);
+  await guard(h);
+
+  const quiet = await collect(h, NOW + 150 * MINUTE);
+  assert.equal(quiet.log.length, 0, 'a backfilled key is not requested again');
+  assert.equal(quiet.changed, false);
+});
+
 test('keeps the last good layer on a count drop and the last good elements on an epoch regression', async () => {
   const h = await setup();
   await collect(h, NOW);

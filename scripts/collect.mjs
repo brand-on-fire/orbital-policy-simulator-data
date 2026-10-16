@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { fetchBounded, sleep } from './lib/http.mjs';
 import { canonicalJson } from './lib/canonical-json.mjs';
 import { normalizeState, recordCelestrakResponse, applyHaltReset, HALT_REMINDER_MS } from './lib/safety.mjs';
-import { planRun, runnableRequests, quarantineKey } from './lib/sources.mjs';
+import { planRun, runnableRequests, quarantineKey, allRequests } from './lib/sources.mjs';
 import { BUILDERS } from './lib/builders.mjs';
 import { readJsonIfExists, writeJson, writeContent, writeFileAtomic, retainedPaths, pruneUnreferenced } from './lib/storage.mjs';
 import { runProvenance } from './lib/provenance.mjs';
@@ -67,7 +67,6 @@ export async function runCollection({
   const reset = applyHaltReset(state, policy.haltResetAt, nowMs);
   if (reset.error) errors.push(reset.error);
 
-  const plan = planRun(configs, state, nowMs, { repositoryBytes: runtime.repositoryBytes });
   const entries = new Map((previousManifest?.files ?? []).map((entry) => [entry.id, entry]));
   const contentCache = new Map();
   const ctx = {
@@ -84,12 +83,30 @@ export async function runCollection({
   };
   const persistState = () => writeJson(statePath, state);
 
+  // Roster catalog numbers missing from the last publication of each backfill source.
+  const missingIds = {};
+  const configuredIds = configs.roster.catnr.map((entry) => entry.noradCatId);
+  const lastRoster = await ctx.previousContent('roster');
+  if (lastRoster) {
+    const have = new Set(lastRoster.objects.filter((object) => object.omm).map((object) => object.noradCatId));
+    missingIds['roster-gp'] = configuredIds.filter((id) => !have.has(id));
+  }
+  const lastSatcat = await ctx.previousContent('satcat:roster');
+  if (lastSatcat) {
+    const have = new Set(lastSatcat.records.map((record) => record.NORAD_CAT_ID));
+    missingIds['satcat-roster'] = configuredIds.filter((id) => !have.has(id));
+  }
+
+  const plan = planRun(configs, state, nowMs, { repositoryBytes: runtime.repositoryBytes, missingIds });
+
   const stops = { celestrak: null, swpc: null };
   const counters = { celestrakRequests: 0, celestrakBytes: 0, swpcRequests: 0 };
   const reports = [];
   for (const item of plan.run) {
     const source = policy.sources.find((candidate) => candidate.id === item.id);
-    const { requests } = runnableRequests(source, configs, state);
+    const backfill = item.mode === 'backfill';
+    const runnable = runnableRequests(source, configs, state).requests;
+    const requests = backfill ? runnable.filter((req) => item.queryKeys.includes(req.queryKey)) : runnable;
     const results = [];
     let attempted = 0;
     let counted = false;
@@ -112,6 +129,7 @@ export async function runCollection({
         counters.celestrakRequests += 1;
         counters.celestrakBytes += result.bytes ?? 0;
         classification = recordCelestrakResponse(state, { result, url: req.url, queryKey: quarantineKey(source, req), nowMs: retrievedAtMs, policy, events });
+        state.keyAttempts[quarantineKey(source, req)] = new Date(retrievedAtMs).toISOString();
         await persistState();
       } else {
         counters.swpcRequests += 1;
@@ -130,7 +148,8 @@ export async function runCollection({
       reports.push({ id: source.id, status: 'deferred', detail: results[0]?.outcome.reason ?? 'not attempted' });
       continue;
     }
-    const built = await BUILDERS[source.kind](source, results, ctx);
+    const built = await BUILDERS[source.kind](source, results, { ...ctx, mode: backfill ? 'backfill' : 'full' });
+    if (backfill) built.report.detail = [`backfill of ${requests.length} new catalog numbers`, built.report.detail].filter(Boolean).join('; ');
     for (const output of built.outputs) {
       const written = await writeContent(generatedDir, output.directory, output.value);
       entries.set(output.id, { id: output.id, ...written, ...output.meta });
@@ -141,12 +160,12 @@ export async function runCollection({
     else if (results.some((entry) => entry.outcome.status === 'error')) lastStatus = 'error';
     else if (noData) lastStatus = 'no-data';
     else if (built.report.status === 'failed') lastStatus = 'validation-failed';
+    // A backfill leaves the source's cadence (lastAttemptAt, lastStatus) untouched.
     state.sources[source.id] = {
       ...sourceState,
-      lastAttemptAt: nowIso,
-      lastStatus,
-      httpStatus: httpStatuses.at(-1) ?? null,
-      requests: attempted,
+      ...(backfill
+        ? { lastBackfillAt: nowIso, lastBackfillStatus: lastStatus }
+        : { lastAttemptAt: nowIso, lastStatus, httpStatus: httpStatuses.at(-1) ?? null, requests: attempted }),
       objectCount: built.report.objectCount ?? sourceState.objectCount ?? null,
       detail: built.report.detail ?? null,
       ...(built.outputs.length ? { lastSuccessAt: nowIso } : {}),
@@ -155,6 +174,11 @@ export async function runCollection({
     reports.push({ id: source.id, ...built.report, lastStatus });
     await persistState();
   }
+
+  // Per-key attempt times are kept only for requests the configuration still makes.
+  const liveKeys = new Set(policy.sources.filter((source) => source.provider === 'celestrak')
+    .flatMap((source) => allRequests(source, configs).map((req) => quarantineKey(source, req))));
+  for (const key of Object.keys(state.keyAttempts)) if (!liveKeys.has(key)) delete state.keyAttempts[key];
 
   const ranCount = reports.filter((report) => report.status !== 'deferred').length;
   const celestrak = state.celestrak;

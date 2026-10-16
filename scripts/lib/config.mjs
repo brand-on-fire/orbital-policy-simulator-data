@@ -46,6 +46,7 @@ export function validateConfigs({ policy, roster, layers }) {
       check(source.pollMinutes >= MIN_CELESTRAK_POLL_MINUTES, `${source.id} polls CelesTrak more often than every ${MIN_CELESTRAK_POLL_MINUTES} minutes`);
     }
     check(Number.isInteger(source.maxResponseBytes) && source.maxResponseBytes > 0 && source.maxResponseBytes <= 16 * 1024 * 1024, `${source.id} needs a response byte cap`);
+    check(!source.backfillNewIds || ['roster-gp', 'satcat-roster'].includes(source.kind), `${source.id} cannot backfill new catalog numbers`);
     const requests = allRequests(source, { roster, layers });
     check(requests.length <= c.maxRequestsPerRun, `${source.id} needs ${requests.length} requests, above the per-run cap`);
     for (const req of requests) {

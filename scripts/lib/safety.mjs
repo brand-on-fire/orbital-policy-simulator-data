@@ -37,6 +37,7 @@ export function defaultState() {
       lastHaltResetApplied: null,
     },
     quarantine: [],
+    keyAttempts: {},
     publishedPaths: {},
     keepalive: { lastCommittedAt: null, lastCommit: null },
     lastSuccessfulCollectionAt: null,
@@ -54,6 +55,7 @@ export function normalizeState(raw) {
     keepalive: { ...base.keepalive, ...(raw.keepalive ?? {}) },
     sources: { ...(raw.sources ?? {}) },
     quarantine: [...(raw.quarantine ?? [])],
+    keyAttempts: { ...(raw.keyAttempts ?? {}) },
     publishedPaths: { ...(raw.publishedPaths ?? {}) },
   };
 }

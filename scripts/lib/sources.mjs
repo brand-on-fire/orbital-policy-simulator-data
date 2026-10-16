@@ -6,6 +6,13 @@
 // a due source that does not fit is deferred to a later tick (never an error). On
 // the very first run (no CelesTrak source ever attempted) only the first CelesTrak
 // source runs, so the initial load is staggered across ticks.
+//
+// New-id backfill: a source with backfillNewIds that is not due may still request
+// roster catalog numbers missing from its last publication, once each: a key is
+// eligible only if it was never requested, or not within the source's pollMinutes
+// (per-key attempts are committed in state.keyAttempts). The source's own cadence
+// (lastAttemptAt) is unchanged, no backfill runs inside an error backoff, and every
+// CelesTrak rule (cap, cooldown, halt, quarantine, stop on non-200) applies as usual.
 import { gpUrl, satcatUrl, supgpUrl, swpcUrl, selectorKey } from './urls.mjs';
 import { celestrakBlockedReason, isQuarantined, bytesToday, BACKOFF_MINUTES } from './safety.mjs';
 import { MINUTE } from './constants.mjs';
@@ -52,6 +59,21 @@ export function runnableRequests(source, configs, state) {
   return { requests: requests.filter((req) => !skipped.includes(req)), skipped };
 }
 
+export function backfillRequests(source, configs, state, nowMs, missingIds) {
+  if (!source.backfillNewIds || source.provider !== 'celestrak' || !missingIds?.length) return [];
+  // Never a faster retry path after an error: no backfill inside an error backoff.
+  const sourceState = state.sources[source.id] ?? {};
+  if (BACKOFF_MINUTES[sourceState.lastStatus]) return [];
+  const backoff = BACKOFF_MINUTES[sourceState.lastBackfillStatus];
+  if (backoff && nowMs < Date.parse(sourceState.lastBackfillAt) + backoff * MINUTE) return [];
+  const missing = new Set(missingIds);
+  return runnableRequests(source, configs, state).requests.filter((req) => {
+    if (req.noradCatId === undefined || !missing.has(req.noradCatId)) return false;
+    const last = Date.parse(state.keyAttempts?.[quarantineKey(source, req)] ?? '');
+    return !Number.isFinite(last) || nowMs >= last + source.pollMinutes * MINUTE;
+  });
+}
+
 export function isDue(source, sourceState, nowMs) {
   if (!source.enabled) return false;
   if (!sourceState?.lastAttemptAt) return true;
@@ -59,7 +81,7 @@ export function isDue(source, sourceState, nowMs) {
   return nowMs >= Date.parse(sourceState.lastAttemptAt) + waitMinutes * MINUTE;
 }
 
-export function planRun({ policy, roster, layers }, state, nowMs, { repositoryBytes = 0 } = {}) {
+export function planRun({ policy, roster, layers }, state, nowMs, { repositoryBytes = 0, missingIds = {} } = {}) {
   const configs = { policy, roster, layers };
   const plan = { run: [], deferred: [], notDue: [], blocked: [], disabled: [] };
   if (!policy.enabled) {
@@ -76,20 +98,26 @@ export function planRun({ policy, roster, layers }, state, nowMs, { repositoryBy
     const sourceState = state.sources[source.id];
     if (!source.enabled) { plan.disabled.push({ id: source.id, reason: 'source disabled' }); continue; }
     if (sourceState?.halted) { plan.blocked.push({ id: source.id, reason: `source halted: ${sourceState.haltReason}` }); continue; }
-    if (!isDue(source, sourceState, nowMs)) { plan.notDue.push({ id: source.id }); continue; }
+    let backfill = null;
+    if (!isDue(source, sourceState, nowMs)) {
+      const pending = backfillRequests(source, configs, state, nowMs, missingIds[source.id]);
+      if (!pending.length) { plan.notDue.push({ id: source.id }); continue; }
+      backfill = pending;
+    }
     if (source.provider !== 'celestrak') { plan.run.push({ id: source.id, requestCount: 1 }); continue; }
-    if (blocked) { plan.blocked.push({ id: source.id, reason: blocked }); continue; }
+    const label = backfill ? 'backfill: ' : '';
+    if (blocked) { plan.blocked.push({ id: source.id, reason: `${label}${blocked}` }); continue; }
     if ((source.kind === 'layer' || source.kind === 'satcat-layers') && repositoryBytes >= policy.publication.layersHaltRepositoryBytes) {
       plan.blocked.push({ id: source.id, reason: 'MAINTENANCE REQUIRED: layer refresh stopped at the repository storage threshold' });
       continue;
     }
-    if (overBytes) { plan.deferred.push({ id: source.id, reason: 'daily CelesTrak byte budget reached' }); continue; }
+    if (overBytes) { plan.deferred.push({ id: source.id, reason: `${label}daily CelesTrak byte budget reached` }); continue; }
     if (bootstrap && bootstrapTaken) { plan.deferred.push({ id: source.id, reason: 'first-run stagger: deferred to a later tick' }); continue; }
-    const { requests } = runnableRequests(source, configs, state);
-    if (requests.length > budget) { plan.deferred.push({ id: source.id, reason: `per-run request cap (${requests.length} needed, ${budget} left)` }); continue; }
+    const requests = backfill ?? runnableRequests(source, configs, state).requests;
+    if (requests.length > budget) { plan.deferred.push({ id: source.id, reason: `${label}per-run request cap (${requests.length} needed, ${budget} left)` }); continue; }
     budget -= requests.length;
     bootstrapTaken = true;
-    plan.run.push({ id: source.id, requestCount: requests.length });
+    plan.run.push({ id: source.id, requestCount: requests.length, ...(backfill ? { mode: 'backfill', queryKeys: requests.map((req) => req.queryKey) } : {}) });
   }
   return plan;
 }

@@ -44,7 +44,8 @@
       "kind": "roster-gp",
       "pollMinutes": 360,
       "maxResponseBytes": 262144,
-      "enabled": true
+      "enabled": true,
+      "backfillNewIds": true
     },
     {
       "id": "stations-supgp",
@@ -141,7 +142,8 @@
       "kind": "satcat-roster",
       "pollMinutes": 10080,
       "maxResponseBytes": 262144,
-      "enabled": true
+      "enabled": true,
+      "backfillNewIds": true
     },
     {
       "id": "satcat-layers",
