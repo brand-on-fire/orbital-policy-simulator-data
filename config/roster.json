@@ -158,6 +158,91 @@
         "https://spaceflightnow.com/2025/09/12/new-u-s-military-satellite-constellation-takes-shape-with-first-launch-from-vandenberg-sfb/",
         "https://www.airandspaceforces.com/space-development-agency-launches-21-data-transport-satellites/"
       ]
+    },
+    {
+      "noradCatId": 67232,
+      "celestrakName": "SPACEMOBILE-006",
+      "note": "AST SpaceMobile BlueBird 6. Name not yet read from a CelesTrak response (no capture on file); the value is the Space-Track catalog name shown by n2yo and the UN Index name. Confirm on the first collector run.",
+      "evidence": [
+        "https://www.n2yo.com/satellite/?s=67232",
+        "https://www.unoosa.org/unoosa/osoindex/data/objects/2025/2025-309a_28578.html"
+      ]
+    },
+    {
+      "noradCatId": 43873,
+      "celestrakName": "GPS BIII-1  (PRN 04)"
+    },
+    {
+      "noradCatId": 51850,
+      "celestrakName": "GOES 18"
+    },
+    {
+      "noradCatId": 39084,
+      "celestrakName": "LANDSAT 8"
+    },
+    {
+      "noradCatId": 54234,
+      "celestrakName": "NOAA 21 (JPSS-2)"
+    },
+    {
+      "noradCatId": 43613,
+      "celestrakName": "ICESAT-2"
+    },
+    {
+      "noradCatId": 25994,
+      "celestrakName": "TERRA"
+    },
+    {
+      "noradCatId": 40115,
+      "celestrakName": "WORLDVIEW-3 (WV-3)"
+    },
+    {
+      "noradCatId": 45465,
+      "celestrakName": "AEHF 6 (USA 298)",
+      "note": "Name not yet read from a CelesTrak response (no capture on file); the value is the Space-Track catalog name shown by n2yo. Elements are public (n2yo TLE epoch 2026-10-15). Not on the NEA denylist. Confirm on the first collector run.",
+      "evidence": [
+        "https://www.n2yo.com/satellite/?s=45465",
+        "https://www.unoosa.org/unoosa/osoindex/data/objects/2020/2020-022b_10935.html"
+      ]
+    },
+    {
+      "noradCatId": 33053,
+      "celestrakName": "FGRST (GLAST)"
+    },
+    {
+      "noradCatId": 38358,
+      "celestrakName": "NUSTAR"
+    },
+    {
+      "noradCatId": 36395,
+      "celestrakName": "SDO"
+    },
+    {
+      "noradCatId": 56370,
+      "celestrakName": "VIASAT 3-F1",
+      "note": "ViaSat-3 F1 (Americas). Name not yet read from a CelesTrak response (no capture on file); the value is the Space-Track catalog name shown by n2yo. Confirm on the first collector run.",
+      "evidence": [
+        "https://www.n2yo.com/satellite/?s=56370",
+        "https://www.unoosa.org/unoosa/osoindex/data/objects/2023/2023-060a_17409.html"
+      ]
+    },
+    {
+      "noradCatId": 57479,
+      "celestrakName": "JUPITER 3 (ECHOSTAR 24)",
+      "note": "Name not yet read from a CelesTrak response (no capture on file); the value is the Space-Track catalog name shown by n2yo. Confirm on the first collector run.",
+      "evidence": [
+        "https://www.n2yo.com/satellite/?s=57479",
+        "https://www.unoosa.org/unoosa/osoindex/data/objects/2023/2023-108a_18433.html"
+      ]
+    },
+    {
+      "noradCatId": 62259,
+      "celestrakName": "SIRIUS XM-9",
+      "note": "SiriusXM SXM-9 (replaced SXM-8 in service in January 2025). Name not yet read from a CelesTrak response (no capture on file); the value is the Space-Track catalog name shown by n2yo. Confirm on the first collector run.",
+      "evidence": [
+        "https://www.n2yo.com/satellite/?s=62259",
+        "https://www.unoosa.org/unoosa/osoindex/data/objects/2024/2024-234a_22930.html"
+      ]
     }
   ],
   "intdes": [

@@ -31,10 +31,13 @@ test('configured cadences: roster and SupGP 6 h, layers daily, SATCAT weekly, Kp
   assert.equal(poll['swpc-cycle'], 10080);
 });
 
-test('roster requests: 38 CATNR plus INTDES 2025-100 and 2026-004, CSV only', async () => {
+test('roster requests: 53 CATNR plus INTDES 2025-100 and 2026-004, CSV only', async () => {
   const configs = await loadRealConfigs();
   const roster = allRequests(configs.policy.sources.find((source) => source.id === 'roster-gp'), configs);
-  assert.equal(roster.length, 40);
+  assert.equal(roster.length, 55);
+  for (const id of [67232, 43873, 51850, 39084, 54234, 43613, 25994, 40115, 45465, 33053, 38358, 36395, 56370, 57479, 62259]) {
+    assert.ok(roster.some((req) => req.url.endsWith(`CATNR=${id}&FORMAT=CSV`)), `${id}`);
+  }
   assert.ok(roster.some((req) => req.url.endsWith('CATNR=65585&FORMAT=CSV')));
   assert.ok(roster.some((req) => req.url.endsWith('INTDES=2025-100&FORMAT=CSV')));
   assert.ok(roster.some((req) => req.url.endsWith('INTDES=2026-004&FORMAT=CSV')));
@@ -84,7 +87,7 @@ test('second tick fills the per-run cap in priority order and defers the remaind
   assert.ok(ran.includes('layer-starlink') && ran.includes('layer-beidou'));
   assert.ok(ran.includes('satcat-layers'));
   assert.deepEqual(plan.deferred.map((item) => item.id), ['satcat-roster']);
-  assert.match(plan.deferred[0].reason, /per-run request cap \(40 needed, 34 left\)/);
+  assert.match(plan.deferred[0].reason, /per-run request cap \(55 needed, 49 left\)/);
   assert.ok(plan.run.reduce((sum, item) => sum + (item.id.startsWith('swpc') ? 0 : item.requestCount), 0) <= configs.policy.celestrak.maxRequestsPerRun);
 });
 

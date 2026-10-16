@@ -7,7 +7,7 @@
   "celestrak": {
     "timeoutSeconds": 30,
     "requestSpacingMs": 2000,
-    "maxRequestsPerRun": 45,
+    "maxRequestsPerRun": 60,
     "maxBytesPerDay": 20971520,
     "errorCooldownMinutes": 120,
     "haltAfterCountedErrors": 3,

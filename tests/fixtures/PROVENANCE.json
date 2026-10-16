@@ -1,5 +1,5 @@
 {
-  "description": "Provenance of every test fixture. 'raw' files are verbatim responses. 'converted-from-json' files were converted from JSON captures to CelesTrak CSV by tests/fixtures/convert-captures.mjs (the converted ISS row is byte-identical to the raw CSV capture). 'synthetic' files are clearly derived rows. Research captures: /private/tmp/.../scratchpad/sat/ of the 2026-10-15 research session.",
+  "description": "Provenance of every test fixture. 'raw' files are verbatim responses. 'converted-from-json' files were converted from JSON captures to CelesTrak CSV by tests/fixtures/convert-captures.mjs (the converted ISS row is byte-identical to the raw CSV capture). 'synthetic' files are clearly derived rows. 'converted-from-tle' files were converted from a published Space-Track-derived TLE. Research captures: /private/tmp/.../scratchpad/sat/ of the 2026-10-15 research session.",
   "schemaFieldOrderSources": {
     "gp": "live CSV capture (raw-gp-catnr-25544.csv)",
     "supgp": "live CSV capture (raw-supgp-iss-e.csv)",
@@ -37,6 +37,16 @@
       "note": "The single row a CATNR query returns, taken from the group response."
     },
     {
+      "file": "celestrak/gp-catnr-25994.csv",
+      "sha256": "386d66a13f59ae0c926bd46e1ba6efd53e7351086a792680e55844fc6dfee95e",
+      "bytes": 371,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 25994)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
       "file": "celestrak/gp-catnr-28899.csv",
       "sha256": "671d147a84100a61d8782b1a6f46363e88b21b5077bca6710de5b7d4bcf66a40",
       "bytes": 382,
@@ -55,6 +65,56 @@
       "capturedAt": "2026-10-15",
       "capture": "research capture sat/gp/military.json (row NORAD_CAT_ID 31797)",
       "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-33053.csv",
+      "sha256": "7455a2ce6eff0549f1ea54df71d5300ca8738476e86b6319ece9819881a76d44",
+      "bytes": 377,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=science&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/science.json (row NORAD_CAT_ID 33053)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-36395.csv",
+      "sha256": "35db86aa17ee8d1d28daa1c37e7cdbd8fd42c7d2eb016d552f0db373960fb876",
+      "bytes": 354,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=science&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/science.json (row NORAD_CAT_ID 36395)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-38358.csv",
+      "sha256": "e13ed0cddd4a0c97015d99d6f5d01167c879879cfb44fbcfefb32968a74422dd",
+      "bytes": 369,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=science&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/science.json (row NORAD_CAT_ID 38358)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-39084.csv",
+      "sha256": "9906484cab06c9ac8b2a41135d3a1bdf29f0907d03fc7dc71d3ebefc4cb656b5",
+      "bytes": 373,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 39084)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-40115.csv",
+      "sha256": "f29482195fc1af7cf08000f20969a0f1b2c73e53c00d93ca51c9443a30cf1f15",
+      "bytes": 378,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 40115)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
     },
     {
       "file": "celestrak/gp-catnr-40420.csv",
@@ -125,6 +185,26 @@
       "note": "The single row a CATNR query returns, taken from the group response."
     },
     {
+      "file": "celestrak/gp-catnr-43613.csv",
+      "sha256": "7ce0b42cbf7951fb86e1e290e76b3e6d1be849b03a89c42ca99665eb89381a67",
+      "bytes": 372,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=resource&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 43613)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-43873.csv",
+      "sha256": "707d8f7fc0fcaede5b1157e52adac6a10afecd3fa7d9e4ef1abdae3573ce8914",
+      "bytes": 368,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=gps-ops&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/gps-ops.json (row NORAD_CAT_ID 43873)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
       "file": "celestrak/gp-catnr-44057.csv",
       "sha256": "97e4c4e64e2a5c9eb21ce6ae71305b05f5e53f419a918616eb2f50ef8d2a8a3e",
       "bytes": 373,
@@ -151,6 +231,16 @@
       "capturedAt": "2026-10-15",
       "capture": "research capture sat/gp/resource.json (row NORAD_CAT_ID 44804)",
       "note": "The single row a CATNR query returns, taken from the group response."
+    },
+    {
+      "file": "celestrak/gp-catnr-45465.csv",
+      "sha256": "d18da93ede428e8f5753b347a3a0612baef3956361e1a96f5225403c39a19b10",
+      "bytes": 365,
+      "method": "converted-from-tle",
+      "source": "https://www.n2yo.com/satellite/?s=45465",
+      "capturedAt": "2026-10-16",
+      "capture": "US roster research page n2yo-45465.html (TLE epoch 2026-10-15, Space-Track derived)",
+      "note": "AEHF-6: no CelesTrak capture exists (this Mac must not query CelesTrak). OMM fields converted from the TLE by tests/fixtures/convert-captures.mjs (checksums verified); OBJECT_NAME is the Space-Track catalog name, unconfirmed against CelesTrak until the first collector run."
     },
     {
       "file": "celestrak/gp-catnr-46114.csv",
@@ -202,6 +292,26 @@
       "note": "The single row a CATNR query returns, taken from the group response."
     },
     {
+      "file": "celestrak/gp-catnr-51850.csv",
+      "sha256": "bdfa19072b8d319bba5188a71a70c903751f9dabe675e14ab7f25eddebc7f271",
+      "bytes": 354,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 51850)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
+      "file": "celestrak/gp-catnr-54234.csv",
+      "sha256": "a61ce6d55abd60da60ec93d9df91848e0857dc7876eb6e606b1989bbdbecd83d",
+      "bytes": 381,
+      "method": "converted-from-json",
+      "source": "https://celestrak.org/NORAD/elements/gp.php?GROUP=weather&FORMAT=JSON",
+      "capturedAt": "2026-10-15",
+      "capture": "research capture sat/gp/weather.json (row NORAD_CAT_ID 54234)",
+      "note": "The single row a CATNR query returns, taken from the group response. Added with the 2026-10-16 US roster expansion."
+    },
+    {
       "file": "celestrak/gp-catnr-54743.csv",
       "sha256": "3c6c1822b72d1ca04866458048bffd41dcb1960a0ffafef13f6a8ae91dba5d7e",
       "bytes": 367,
@@ -221,6 +331,16 @@
       "capture": "research capture sat/gpc/54755.json"
     },
     {
+      "file": "celestrak/gp-catnr-56370.csv",
+      "sha256": "0372133f95e3081e41f3aa51f2bbe3ad39751b4c49d5cf1ba726bc056c1bd18a",
+      "bytes": 361,
+      "method": "converted-from-tle",
+      "source": "https://www.n2yo.com/satellite/?s=56370",
+      "capturedAt": "2026-10-16",
+      "capture": "US roster research page n2yo-56370.html (TLE epoch 2026-10-15, Space-Track derived)",
+      "note": "ViaSat-3 F1: no CelesTrak capture exists (this Mac must not query CelesTrak). OMM fields converted from the TLE by tests/fixtures/convert-captures.mjs (checksums verified); OBJECT_NAME is the Space-Track catalog name, unconfirmed against CelesTrak until the first collector run."
+    },
+    {
       "file": "celestrak/gp-catnr-56759.csv",
       "sha256": "3276e84a6b615e0bf6650f3e4905d1f7d7d07c42d768ba0572f0dabec026bb08",
       "bytes": 368,
@@ -228,6 +348,16 @@
       "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=56759&FORMAT=JSON",
       "capturedAt": "2026-10-15",
       "capture": "research capture sat/gpc/56759.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-57479.csv",
+      "sha256": "44e0fe12a35766d38e1b7395566a4586a577a5e5ab36e23352c382e5ae6bff9f",
+      "bytes": 365,
+      "method": "converted-from-tle",
+      "source": "https://www.n2yo.com/satellite/?s=57479",
+      "capturedAt": "2026-10-16",
+      "capture": "US roster research page n2yo-57479.html (TLE epoch 2026-10-15, Space-Track derived)",
+      "note": "Jupiter 3: no CelesTrak capture exists (this Mac must not query CelesTrak). OMM fields converted from the TLE by tests/fixtures/convert-captures.mjs (checksums verified); OBJECT_NAME is the Space-Track catalog name, unconfirmed against CelesTrak until the first collector run."
     },
     {
       "file": "celestrak/gp-catnr-57517.csv",
@@ -309,6 +439,16 @@
       "note": "The single row a CATNR query returns, taken from the group response."
     },
     {
+      "file": "celestrak/gp-catnr-62259.csv",
+      "sha256": "fe8d2c905f9175ae5f9ca6ba211b2942ebc9f60136df45aa5c168ec1d40e1181",
+      "bytes": 359,
+      "method": "converted-from-tle",
+      "source": "https://www.n2yo.com/satellite/?s=62259",
+      "capturedAt": "2026-10-16",
+      "capture": "US roster research page n2yo-62259.html (TLE epoch 2026-10-15, Space-Track derived)",
+      "note": "SXM-9: no CelesTrak capture exists (this Mac must not query CelesTrak). OMM fields converted from the TLE by tests/fixtures/convert-captures.mjs (checksums verified); OBJECT_NAME is the Space-Track catalog name, unconfirmed against CelesTrak until the first collector run."
+    },
+    {
       "file": "celestrak/gp-catnr-62323.csv",
       "sha256": "a1da607ac6cd227ca1caaaf4707f670f38300dd29ebe4808351d67e877949c72",
       "bytes": 382,
@@ -375,6 +515,16 @@
       "source": "https://celestrak.org/NORAD/elements/gp.php?CATNR=66303&FORMAT=JSON",
       "capturedAt": "2026-10-15",
       "capture": "research capture sat/gpc/66303.json"
+    },
+    {
+      "file": "celestrak/gp-catnr-67232.csv",
+      "sha256": "2f7c6e5fd27c962bf2022e9f33f480271c6ba62d6f10edf5d3ec8139505371b2",
+      "bytes": 376,
+      "method": "converted-from-tle",
+      "source": "https://www.n2yo.com/satellite/?s=67232",
+      "capturedAt": "2026-10-16",
+      "capture": "US roster research page n2yo-67232.html (TLE epoch 2026-10-15, Space-Track derived)",
+      "note": "BlueBird 6: no CelesTrak capture exists (this Mac must not query CelesTrak). OMM fields converted from the TLE by tests/fixtures/convert-captures.mjs (checksums verified); OBJECT_NAME is the Space-Track catalog name, unconfirmed against CelesTrak until the first collector run."
     },
     {
       "file": "celestrak/gp-catnr-67335.csv",

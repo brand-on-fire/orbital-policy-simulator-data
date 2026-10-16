@@ -14,7 +14,7 @@ https://raw.githubusercontent.com/brand-on-fire/orbital-policy-simulator-data/pu
 
 | Manifest id | Directory | Contents | Refresh |
 |---|---|---|---|
-| `roster` | `roster/` | 38 catalog numbers plus SCS-01 A to M (INTDES 2025-100) and AETHER-3 to 12 (INTDES 2026-004), full OMM per object with a status (`current`, `retained`, `stale-elements`, `decaying`, `quarantined`) | 6 h |
+| `roster` | `roster/` | 53 catalog numbers plus SCS-01 A to M (INTDES 2025-100) and AETHER-3 to 12 (INTDES 2026-004), full OMM per object with a status (`current`, `retained`, `stale-elements`, `decaying`, `quarantined`) | 6 h |
 | `stations` | `stations/` | SupGP ISS-E and CSS-E: 6-hour segments fitted forward (planned maneuvers included) | 6 h |
 | `shells:<group>` | `shells/` | Every object in the group binned by altitude and inclination: counts, means and representative plane RAANs | daily |
 | `layer-sampled:<group>` | `layers-sampled/` | Columnar elements for catalog numbers divisible by `sampleEvery` (every 10th Starlink; small constellations in full) | daily |
@@ -30,13 +30,13 @@ Groups: starlink, oneweb, kuiper, qianfan, hulianwang (Guowang), gps-ops, glo-op
 - `.github/workflows/collect.yml` ticks at minutes 17 and 47. It runs only in this exact public repository on its default branch, with top-level `contents: read` and job-level `contents: write`, one concurrency group without cancellation, no secrets, no cache, no artifacts and a standard runner.
 - Node 22 on the runner, no install step. SGP4 is the vendored satellite.js 7.1.0 bundle in `vendor/` (WASM runtimes stubbed), checked against `VENDOR.json` by `scripts/verify-vendor.mjs` before every run.
 - `scripts/publish.mjs restore` fetches the last publication and the committed collector state (`state/collector-state.json`) from `public-data`.
-- `scripts/collect.mjs` requests only the sources that are due: `now >= lastAttemptAt + max(pollMinutes, backoff)`. CelesTrak sources run in policy order inside a per-run cap of 45 requests; anything that does not fit waits for a later tick. The very first run requests only the roster.
+- `scripts/collect.mjs` requests only the sources that are due: `now >= lastAttemptAt + max(pollMinutes, backoff)`. CelesTrak sources run in policy order inside a per-run cap of 60 requests (the validator's maximum; the roster uses 55, so a larger roster needs a split across runs); anything that does not fit waits for a later tick. The very first run requests only the roster.
 - `scripts/publish.mjs publish` runs the storage guard and pushes an ordinary commit whose parent is the restored head. Nothing is ever force-pushed.
 
 ## CelesTrak safety
 
 - Only `https://celestrak.org` (never `.com`), `FORMAT=CSV` only (6-digit catalog numbers exist; TLE cannot carry them), every CelesTrak source polled no more often than every 120 minutes (a test enforces it).
-- About 168 requests and 3 to 5 MB per day at most, against CelesTrak's 100 MB per day threshold.
+- About 245 requests and 3 to 5 MB per day at most, against CelesTrak's 100 MB per day threshold.
 - The first non-200 stops every further CelesTrak request in the run and starts a 120-minute cooldown.
 - Every 403 counts as an error; 2 consecutive 403s halt. A 404 quarantines that query. A 301 halts. 3 counted errors (consecutive, or within 24 hours) halt.
 - The NEA denylist is hard-coded in `scripts/lib/constants.mjs`; the URL builders and the final request check refuse those catalog numbers and their launch designators.
